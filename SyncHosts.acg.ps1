@@ -36,7 +36,7 @@ function Sync-Hosts ($HostFileName, $DestinationFolder)
 
     if ($CurrentCommitSHA -ne $LatestCommitSHA)
     {
-        curl $HostFileUrl > "$DestinationFolder\$OriginalHostFileName"
+        (curl $HostFileUrl).Content > "$DestinationFolder\$OriginalHostFileName"
         Write-Output $LatestCommitSHA > "$LastCommitSHAFilePath"
 
         Write-Verbose "Host file synced"
