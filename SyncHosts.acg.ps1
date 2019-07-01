@@ -1,5 +1,5 @@
-$HostFileName="hosts.acg"
-$DestinationFolder="C:\Temp\DNSStuff"
+$HostFileName = "hosts.acg"
+$DestinationFolder = "C:\Temp\DNSStuff"
 
 function Sync-Hosts ($HostFileName, $DestinationFolder)
 {
@@ -8,15 +8,15 @@ function Sync-Hosts ($HostFileName, $DestinationFolder)
         $DestinationFolder = "C:\Windows\System32\drivers\etc" 
     }
 
-    $OriginalHostFileName="hosts"
-    $CommitHistoryUrl="https://api.github.com/repos/amit-g/DNSStuff/commits?path=${HostFileName}"
-    $HostFileUrl="https://raw.githubusercontent.com/amit-g/DNSStuff/master/${HostFileName}"
+    $OriginalHostFileName = "hosts"
+    $CommitHistoryUrl = "https://api.github.com/repos/amit-g/DNSStuff/commits?path=${HostFileName}"
+    $HostFileUrl = "https://raw.githubusercontent.com/amit-g/DNSStuff/master/${HostFileName}"
 
-    $LastCommitSHAFileName="${HostFileName}.sha"
-    $LastCommitSHAFilePath="$DestinationFolder\$LastCommitSHAFileName"
+    $LastCommitSHAFileName = "${HostFileName}.sha"
+    $LastCommitSHAFilePath = "$DestinationFolder\$LastCommitSHAFileName"
 
-    $CommitHistory=(curl $CommitHistoryUrl).Content | ConvertFrom-Json
-    $LatestCommitSHA=$CommitHistory[0].sha
+    $CommitHistory = (curl $CommitHistoryUrl).Content | ConvertFrom-Json
+    $LatestCommitSHA = $CommitHistory[0].sha
 
     if (!(Test-Path "$LastCommitSHAFilePath"))
     {
